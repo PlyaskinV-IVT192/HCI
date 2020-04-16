@@ -57,7 +57,6 @@ object Z26: TZ26
     Height = 384
     Top = -40
     Width = 589
-    OnClick = ImageClick
     Picture.Data = {
       0A544A706567496D61676594AD0000FFD8FFE000104A46494600010100000100
       010000FFDB004300020101010101020101010202020202040302020202050404
@@ -1484,6 +1483,10 @@ object Z26: TZ26
         Caption = 'Выход'
         OnClick = QuitClick
       end
+    end
+    object Help: TMenuItem
+      Caption = 'Справка'
+      OnClick = HelpClick
     end
   end
   object OpenDialog1: TOpenDialog

@@ -18,6 +18,7 @@ type
     MainMenu1: TMainMenu;
     Memo: TMemo;
     FileMenu: TMenuItem;
+    Help: TMenuItem;
     Open: TMenuItem;
     FOpenDialog: TOpenDialog;
     Save: TMenuItem;
@@ -32,6 +33,7 @@ type
     YL: TLabel;
     ZL: TLabel;
     procedure ButtonClick(Sender: TObject);
+    procedure HelpClick(Sender: TObject);
     procedure OpenClick(Sender: TObject);
     procedure QuitClick(Sender: TObject);
     procedure SaveClick(Sender: TObject);
@@ -60,6 +62,11 @@ z:= StrToFloat(ZE.Text);
 a:=(3 + Exp(y - 1))/(1 + x * x * Abs(y - Sin(z)/Cos(z)));
 b:= 1 + Abs(y - x) + Power(y - x, 2)/2 + Power(Abs(x - y), 3)/3;
 Memo.Lines.Add('При X= '+FloatToStr(x)+', Y= '+FloatToStr(y)+', Z= '+FloatToStr(z)+', A= '+FloatToStr(round(a*100)/100)+', B= '+FloatToStr(round(b*100)/100));
+end;
+
+procedure TZ11b.HelpClick(Sender: TObject);
+begin
+ShowMessage('Программа считает A и B, используя X, Y, Z, по формулам. Автор: Пляскин В. В.');
 end;
 
 procedure TZ11b.OpenClick(Sender: TObject);

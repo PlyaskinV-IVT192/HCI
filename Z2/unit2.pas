@@ -17,6 +17,7 @@ type
     Image: TImage;
     MainMenu1: TMainMenu;
     FileMenu: TMenuItem;
+    Help: TMenuItem;
     Open: TMenuItem;
     Save: TMenuItem;
     SaveResult: TMenuItem;
@@ -28,7 +29,7 @@ type
     LUgol: TLabel;
     Memo: TMemo;
     procedure ButtonClick(Sender: TObject);
-    procedure ImageClick(Sender: TObject);
+    procedure HelpClick(Sender: TObject);
     procedure OpenClick(Sender: TObject);
     procedure QuitClick(Sender: TObject);
     procedure SaveClick(Sender: TObject);
@@ -58,9 +59,9 @@ begin
   Memo.Lines.Add('При F= '+FloatToStr(f)+' Площадь равна - '+FloatToStr(round(s*100)/100));
 end;
 
-procedure TZ26.ImageClick(Sender: TObject);
+procedure TZ26.HelpClick(Sender: TObject);
 begin
-
+ShowMessage('Программа находит площадь сектора, радиус которого равен 13.7, а дуга содержит заданное число радиан. Автор: Пляскин В. В.');
 end;
 
 procedure TZ26.OpenClick(Sender: TObject);

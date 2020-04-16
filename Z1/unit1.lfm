@@ -1531,6 +1531,10 @@ object Z11b: TZ11b
         OnClick = QuitClick
       end
     end
+    object Help: TMenuItem
+      Caption = 'Справка'
+      OnClick = HelpClick
+    end
   end
   object FOpenDialog: TOpenDialog
     Filter = 'Текстовый файл|*.txt'
