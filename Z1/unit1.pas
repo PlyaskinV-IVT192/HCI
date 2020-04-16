@@ -38,6 +38,7 @@ type
     procedure QuitClick(Sender: TObject);
     procedure SaveClick(Sender: TObject);
     procedure SaveResultClick(Sender: TObject);
+    procedure DataFromForm();
   private
 
   public
@@ -46,6 +47,7 @@ type
 
 var
   Z11b: TZ11b;
+  x, y, z: real;
 
 implementation
 
@@ -56,6 +58,7 @@ implementation
 procedure TZ11b.ButtonClick(Sender: TObject);
 var x, y, z, a, b: real;
 begin
+DataFromForm();
 x:= StrToFloat(XE.Text);
 y:= StrToFloat(YE.Text);
 z:= StrToFloat(ZE.Text);
@@ -114,6 +117,29 @@ procedure TZ11b.SaveResultClick(Sender: TObject);
 begin
   Memo.Lines.SaveToFile('Result.txt');
 end;
+
+procedure TZ11b.DataFromForm();
+begin
+  if TryStrToFloat(XE.Text, x) = false then
+    begin
+    XE.Color:= clGradientActiveCaption;
+    ShowMessage('Неправильно введён параметр X');
+    exit;
+    end;
+
+  if TryStrToFloat(YE.Text, y) = false then
+      begin
+      ShowMessage('Неправильно введён параметр Y');
+      exit;
+      end;
+
+    if TryStrToFloat(ZE.Text, z) = false then
+      begin
+      ShowMessage('Неправильно введён параметр Z');
+      exit;
+      end;
+end;
+
 
 end.
 

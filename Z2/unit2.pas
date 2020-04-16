@@ -34,6 +34,7 @@ type
     procedure QuitClick(Sender: TObject);
     procedure SaveClick(Sender: TObject);
     procedure SaveResultClick(Sender: TObject);
+    procedure DataFromForm();
   private
 
   public
@@ -42,6 +43,7 @@ type
 
 var
   Z26: TZ26;
+  f: real;
 
 implementation
 
@@ -53,6 +55,7 @@ procedure TZ26.ButtonClick(Sender: TObject);
 var
   s, f, r: real;
 begin
+  DataFromForm();
   r:=13.7;
   f:=StrToFloat(Ugol.Text);
   s := (r * r * f) / 2;
@@ -101,6 +104,17 @@ procedure TZ26.SaveResultClick(Sender: TObject);
 begin
   Memo.Lines.SaveToFile('Отчет.txt');
 end;
+
+procedure TZ26.DataFromForm();
+begin
+  if TryStrToFloat(Ugol.Text, f) = false then
+    begin
+    Ugol.Color:= clGradientActiveCaption;
+    ShowMessage('Неправильно введён параметр F');
+    exit;
+    end;
+end;
+
 
 end.
 

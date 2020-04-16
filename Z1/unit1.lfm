@@ -1421,8 +1421,10 @@ object Z11b: TZ11b
     Height = 24
     Top = 20
     Width = 48
+    BidiMode = bdRightToLeft
     BorderSpacing.Left = 10
     BorderSpacing.Top = 20
+    ParentBidiMode = False
     TabOrder = 0
   end
   object YE: TEdit
@@ -1434,8 +1436,10 @@ object Z11b: TZ11b
     Height = 24
     Top = 48
     Width = 48
+    BidiMode = bdRightToLeft
     BorderSpacing.Left = 10
     BorderSpacing.Top = 4
+    ParentBidiMode = False
     TabOrder = 1
   end
   object ZE: TEdit
@@ -1447,8 +1451,10 @@ object Z11b: TZ11b
     Height = 24
     Top = 76
     Width = 48
+    BidiMode = bdRightToLeft
     BorderSpacing.Left = 10
     BorderSpacing.Top = 4
+    ParentBidiMode = False
     TabOrder = 2
   end
   object Button: TButton
