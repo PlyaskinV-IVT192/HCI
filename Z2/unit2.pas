@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, StdCtrls,
-  ExtCtrls;
+  ExtCtrls, Grids, Logic;
 
 type
 
@@ -25,9 +25,10 @@ type
     Quit: TMenuItem;
     OpenDialog1: TOpenDialog;
     SaveDialog1: TSaveDialog;
+    StringGrid1: TStringGrid;
     Ugol: TEdit;
     LUgol: TLabel;
-    Memo: TMemo;
+    procedure FormCreate(Sender: TObject);
     procedure ButtonClick(Sender: TObject);
     procedure HelpClick(Sender: TObject);
     procedure OpenClick(Sender: TObject);
@@ -43,23 +44,34 @@ type
 
 var
   Z26: TZ26;
-  f: real;
+  fi, S: real;
+  calculations: array [1..128] of Calculation;
+  last_ind: integer;
 
 implementation
 
 {$R *.lfm}
 
 { TZ26 }
+procedure TZ26.FormCreate(Sender: TObject);
+begin
+  last_ind := 0;
+end;
 
 procedure TZ26.ButtonClick(Sender: TObject);
 var
-  s, f, r: real;
+last_calc: Calculation;
 begin
-  DataFromForm();
-  r:=13.7;
-  f:=StrToFloat(Ugol.Text);
-  s := (r * r * f) / 2;
-  Memo.Lines.Add('При F= '+FloatToStr(f)+' Площадь равна - '+FloatToStr(round(s*100)/100));
+DataFromForm();
+S:= calc(fi);
+last_calc.fi:=fi;
+last_calc.S:=S;
+inc(last_ind);
+calculations[last_ind]:=last_calc;
+StringGrid1.RowCount:= last_ind + 1;
+StringGrid1.Cells[1, last_ind] := '13.7';
+StringGrid1.Cells[2, last_ind] := floattostr(fi);
+StringGrid1.Cells[3, last_ind] := floattostr(round(S*100)/100);
 end;
 
 procedure TZ26.HelpClick(Sender: TObject);
@@ -68,18 +80,15 @@ ShowMessage('Программа находит площадь сектора, р
 end;
 
 procedure TZ26.OpenClick(Sender: TObject);
-var f:textfile;
-  FName, s: string;
 begin
 if OpenDialog1.Execute then
 begin
-FName:= OpenDialog1.FileName;
-AssignFile(f,FName);
-Reset(f);
-readln(f,s);
-Ugol.Text:=s;
+if OpenDialog1.FileName <> '' then
+begin
+load_params(fi, OpenDialog1.FileName);
+Ugol.Text:= floattostr(fi);
 end;
-closeFile(f);
+end;
 end;
 
 procedure TZ26.QuitClick(Sender: TObject);
@@ -88,33 +97,29 @@ begin
 end;
 
 procedure TZ26.SaveClick(Sender: TObject);
-var f: textfile;
-  FName, s: string;
 begin
 if SaveDialog1.Execute then
-FName := SaveDialog1.FileName;
-AssignFile(f,FName);
-Rewrite(f);
-s:=Ugol.Text;
-writeln(f,s);
-closeFile(f);
+if SaveDialog1.FileName <> '' then
+begin
+DataFromForm();
+save_params(fi, SaveDialog1.FileName);
+end;
 end;
 
 procedure TZ26.SaveResultClick(Sender: TObject);
 begin
-  Memo.Lines.SaveToFile('Отчет.txt');
+ //Memo.Lines.SaveToFile('Отчет.txt');
 end;
 
 procedure TZ26.DataFromForm();
 begin
-  if TryStrToFloat(Ugol.Text, f) = false then
-    begin
-    Ugol.Color:= clGradientActiveCaption;
-    ShowMessage('Неправильно введён параметр F');
-    exit;
-    end;
+if TryStrToFloat(Ugol.Text, fi) = false then
+begin
+Ugol.Color:= clGradientActiveCaption;
+ShowMessage('Неправильно введён параметр Fi');
+exit;
 end;
-
+end;
 
 end.
 

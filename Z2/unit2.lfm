@@ -1,11 +1,11 @@
 object Z26: TZ26
   Left = 302
-  Height = 251
+  Height = 375
   Top = 166
-  Width = 323
+  Width = 399
   Caption = 'Задача 2'
-  ClientHeight = 231
-  ClientWidth = 323
+  ClientHeight = 355
+  ClientWidth = 399
   Font.CharSet = ANSI_CHARSET
   Font.Color = clBlack
   Font.Height = -16
@@ -15,47 +15,10 @@ object Z26: TZ26
   Font.Style = [fsItalic]
   Menu = MainMenu1
   LCLVersion = '2.0.6.0'
-  object Ugol: TEdit
-    AnchorSideLeft.Control = LUgol
-    AnchorSideLeft.Side = asrBottom
-    AnchorSideTop.Control = Owner
-    Left = 203
-    Height = 27
-    Top = 26
-    Width = 61
-    BidiMode = bdRightToLeft
-    BorderSpacing.Left = 10
-    BorderSpacing.Top = 26
-    ParentBidiMode = False
-    TabOrder = 0
-    Text = '1'
-  end
-  object Button: TButton
-    AnchorSideTop.Control = Owner
-    Left = 71
-    Height = 33
-    Top = 60
-    Width = 177
-    Anchors = [akTop]
-    BorderSpacing.Top = 60
-    Caption = 'Вычислить площадь'
-    OnClick = ButtonClick
-    TabOrder = 1
-  end
-  object Memo: TMemo
-    AnchorSideTop.Control = Owner
-    Left = 64
-    Height = 100
-    Top = 100
-    Width = 192
-    Anchors = [akTop]
-    BorderSpacing.Top = 100
-    TabOrder = 2
-  end
   object Image: TImage
     Left = -152
     Height = 384
-    Top = -40
+    Top = -24
     Width = 589
     Picture.Data = {
       0A544A706567496D61676594AD0000FFD8FFE000104A46494600010100000100
@@ -1450,16 +1413,81 @@ object Z26: TZ26
       47FFD9
     }
   end
+  object Ugol: TEdit
+    AnchorSideLeft.Control = LUgol
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = Owner
+    Left = 236
+    Height = 27
+    Top = 26
+    Width = 61
+    BidiMode = bdRightToLeft
+    BorderSpacing.Left = 10
+    BorderSpacing.Top = 26
+    ParentBidiMode = False
+    TabOrder = 0
+    Text = '1'
+  end
+  object Button: TButton
+    AnchorSideTop.Control = Owner
+    Left = 108
+    Height = 33
+    Top = 60
+    Width = 177
+    Anchors = [akTop]
+    BorderSpacing.Top = 60
+    Caption = 'Вычислить площадь'
+    OnClick = ButtonClick
+    TabOrder = 1
+  end
   object LUgol: TLabel
     AnchorSideTop.Control = Owner
-    Left = 71
+    Left = 100
     Height = 19
     Top = 30
-    Width = 122
+    Width = 126
     Anchors = [akTop]
     BorderSpacing.Top = 30
-    Caption = 'Введите угол F'
+    Caption = 'Введите угол Fi'
     ParentColor = False
+  end
+  object StringGrid1: TStringGrid
+    AnchorSideTop.Control = Button
+    AnchorSideTop.Side = asrBottom
+    Left = 59
+    Height = 227
+    Top = 101
+    Width = 280
+    Anchors = [akTop]
+    BorderSpacing.Top = 8
+    ColCount = 4
+    RowCount = 1
+    TabOrder = 2
+    TitleFont.CharSet = ANSI_CHARSET
+    TitleFont.Color = clBlack
+    TitleFont.Height = -16
+    TitleFont.Name = 'Arial'
+    TitleFont.Pitch = fpVariable
+    TitleFont.Quality = fqDraft
+    TitleFont.Style = [fsItalic]
+    ColWidths = (
+      70
+      67
+      71
+      68
+    )
+    Cells = (
+      3
+      1
+      0
+      'R'
+      2
+      0
+      'fi'
+      3
+      0
+      'S'
+    )
   end
   object MainMenu1: TMainMenu
     object FileMenu: TMenuItem
