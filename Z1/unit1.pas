@@ -56,12 +56,9 @@ implementation
 { TZ11b }
 
 procedure TZ11b.ButtonClick(Sender: TObject);
-var x, y, z, a, b: real;
+var a, b: real;
 begin
 DataFromForm();
-x:= StrToFloat(XE.Text);
-y:= StrToFloat(YE.Text);
-z:= StrToFloat(ZE.Text);
 a:=(3 + Exp(y - 1))/(1 + x * x * Abs(y - Sin(z)/Cos(z)));
 b:= 1 + Abs(y - x) + Power(y - x, 2)/2 + Power(Abs(x - y), 3)/3;
 Memo.Lines.Add('При X= '+FloatToStr(x)+', Y= '+FloatToStr(y)+', Z= '+FloatToStr(z)+', A= '+FloatToStr(round(a*100)/100)+', B= '+FloatToStr(round(b*100)/100));
