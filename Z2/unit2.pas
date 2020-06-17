@@ -118,7 +118,8 @@ begin
 Ugol.Color:= clGradientActiveCaption;
 ShowMessage('Неправильно введён параметр Fi');
 exit;
-end;
+end
+else Ugol.Color:=clDefault;
 end;
 
 end.

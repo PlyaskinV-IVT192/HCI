@@ -1,8 +1,9 @@
 object Z11b: TZ11b
-  Left = 340
+  Left = 241
   Height = 276
-  Top = 119
+  Top = 124
   Width = 264
+  BorderStyle = bsSingle
   Caption = 'Задача 1'
   ClientHeight = 256
   ClientWidth = 264
@@ -1417,7 +1418,7 @@ object Z11b: TZ11b
     AnchorSideLeft.Control = XL
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = Owner
-    Left = 152
+    Left = 121
     Height = 24
     Top = 20
     Width = 48
@@ -1432,7 +1433,7 @@ object Z11b: TZ11b
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = XE
     AnchorSideTop.Side = asrBottom
-    Left = 152
+    Left = 121
     Height = 24
     Top = 48
     Width = 48
@@ -1447,7 +1448,7 @@ object Z11b: TZ11b
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = YE
     AnchorSideTop.Side = asrBottom
-    Left = 152
+    Left = 121
     Height = 24
     Top = 76
     Width = 48
@@ -1459,7 +1460,7 @@ object Z11b: TZ11b
   end
   object Button: TButton
     AnchorSideTop.Control = Owner
-    Left = 77
+    Left = 72
     Height = 36
     Top = 104
     Width = 118
@@ -1471,7 +1472,7 @@ object Z11b: TZ11b
   end
   object Memo: TMemo
     AnchorSideTop.Control = Owner
-    Left = 20
+    Left = 24
     Height = 102
     Top = 150
     Width = 221
@@ -1481,37 +1482,37 @@ object Z11b: TZ11b
   end
   object XL: TLabel
     AnchorSideTop.Control = Owner
-    Left = 72
+    Left = 100
     Height = 16
     Top = 24
-    Width = 70
+    Width = 11
     Anchors = [akTop]
     BorderSpacing.Top = 24
-    Caption = 'Введите X'
+    Caption = 'X'
     ParentColor = False
   end
   object YL: TLabel
     AnchorSideTop.Control = XL
     AnchorSideTop.Side = asrBottom
-    Left = 72
+    Left = 100
     Height = 16
     Top = 52
-    Width = 70
+    Width = 11
     Anchors = [akTop]
     BorderSpacing.Top = 12
-    Caption = 'Введите Y'
+    Caption = 'Y'
     ParentColor = False
   end
   object ZL: TLabel
     AnchorSideTop.Control = YL
     AnchorSideTop.Side = asrBottom
-    Left = 74
+    Left = 102
     Height = 16
     Top = 80
-    Width = 68
+    Width = 9
     Anchors = [akTop]
     BorderSpacing.Top = 12
-    Caption = 'Введите Z'
+    Caption = 'Z'
     ParentColor = False
   end
   object MainMenu1: TMainMenu

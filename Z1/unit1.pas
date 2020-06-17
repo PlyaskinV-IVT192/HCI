@@ -5,8 +5,8 @@ unit Unit1;
 interface
 
 uses
-  Classes, SysUtils, Forms, Math, Controls, Graphics, Dialogs, StdCtrls, Menus,
-  ExtCtrls;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Menus,
+  ExtCtrls, logic;
 
 type
 
@@ -59,8 +59,8 @@ procedure TZ11b.ButtonClick(Sender: TObject);
 var a, b: real;
 begin
 DataFromForm();
-a:=(3 + Exp(y - 1))/(1 + x * x * Abs(y - Sin(z)/Cos(z)));
-b:= 1 + Abs(y - x) + Power(y - x, 2)/2 + Power(Abs(x - y), 3)/3;
+a:= calc_a(x, y, z);
+b:= calc_b(x, y, z);
 Memo.Lines.Add('При X= '+FloatToStr(x)+', Y= '+FloatToStr(y)+', Z= '+FloatToStr(z)+', A= '+FloatToStr(round(a*100)/100)+', B= '+FloatToStr(round(b*100)/100));
 end;
 
@@ -70,22 +70,17 @@ ShowMessage('Программа считает A и B, используя X, Y, 
 end;
 
 procedure TZ11b.OpenClick(Sender: TObject);
-var f: textfile;
-  FName, s1, s2, s3: string;
 begin
-  if FOpenDialog.Execute then
+if FSaveDialog.Execute then
 begin
-FName := FOpenDialog.FileName;
-AssignFile(f,FName);
-Reset(f);
-readln(f,s1);
-readln(f,s2);
-readln(f,s3);
-XE.Text:= s1;
-YE.Text:= s2;
-ZE.Text:= s3;
+if FSaveDialog.FileName <> '' then
+begin
+load_params(x, y, z, FSaveDialog.FileName);
+XE.Text:= FloatToStr(x);
+YE.Text:= FloatToStr(y);
+ZE.Text:= FloatToStr(z);
 end;
-closeFile(f);
+end;
 end;
 
 procedure TZ11b.QuitClick(Sender: TObject);
@@ -94,20 +89,13 @@ begin
 end;
 
 procedure TZ11b.SaveClick(Sender: TObject);
-var f: textfile;
-  FName, s1, s2, s3: string;
 begin
 if FSaveDialog.Execute then
-FName := FSaveDialog.FileName;
-AssignFile(f,FName);
-Rewrite(f);
-s1:=XE.Text;
-s2:=YE.Text;
-s3:=ZE.Text;
-writeln(f,s1);
-writeln(f,s2);
-writeln(f,s3);
-closeFile(f);
+        if FSaveDialog.FileName <> '' then
+        begin
+          DataFromForm();
+          save_params(x, y, z, FSaveDialog.FileName);
+          end;
 end;
 
 procedure TZ11b.SaveResultClick(Sender: TObject);
@@ -118,25 +106,29 @@ end;
 procedure TZ11b.DataFromForm();
 begin
   if TryStrToFloat(XE.Text, x) = false then
-    begin
-    XE.Color:= clGradientActiveCaption;
-    ShowMessage('Неправильно введён параметр X');
-    exit;
-    end;
+     begin
+     XE.Color:= clGradientActiveCaption;
+     ShowMessage('Неправильно введён параметр X');
+     exit;
+     end
+  else XE.Color:= clDefault;
 
   if TryStrToFloat(YE.Text, y) = false then
-      begin
+     begin
+      YE.Color:= clGradientActiveCaption;
       ShowMessage('Неправильно введён параметр Y');
       exit;
-      end;
+      end
+  else YE.Color:= clDefault;
 
-    if TryStrToFloat(ZE.Text, z) = false then
+  if TryStrToFloat(ZE.Text, z) = false then
       begin
+      ZE.Color:= clGradientActiveCaption;
       ShowMessage('Неправильно введён параметр Z');
       exit;
-      end;
+      end
+  else ZE.Color:= clDefault;
 end;
-
 
 end.
 
